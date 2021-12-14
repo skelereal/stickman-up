@@ -1,0 +1,24 @@
+html {
+    text-align: center
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-image: linear-gradient(to bottom left, #FFFFFF, #008080, #D8BFD8, #40E0D0);
+}
+
+canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid blue;
+}
+
+p {
+    position: fixed;
+    bottom: 0;
+}
