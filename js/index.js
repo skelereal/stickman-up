@@ -1,10 +1,21 @@
-function setup() {
-  createCanvas(400, 600);
+var dissapointed;
+var bruh;
+var boing;
+var shutdown;
+var superidol;
+var slider;
+
+function preload() {
   dissapointed = loadSound('../sound/dissapointed.mp3');
   bruh = loadSound('../sound/bruh.mp3');
   boing = loadSound('../sound/boing.mp3');
   shutdown = loadSound('../sound/shutdown.mp3');
   superidol = loadSound('../sound/super-idol.mp3');
+  slider = createSlider(0, 1, 0.5, 0.01);
+}
+
+function setup() {
+  createCanvas(400, 600);
   platforms = [];
   score = 0;
   deathBg = createImg('../pics/death.jpg');
@@ -19,6 +30,15 @@ function setup() {
   for (let i = 0; i < 5; i++) {
     platforms.push(new Platform(random(0, 360), 600 - i * gap));
   }
+  superidol.setVolume(slider.value());
+  if (!superidol.isPlaying()) {
+    superidol.play();
+    superidol.loop();
+  } else {
+    superidol.stop();
+    superidol.play();
+  }
+
 }
   
 function draw() {
@@ -42,7 +62,7 @@ function draw() {
     fill('#000000');
     textAlign(CENTER);
     text(score, 200, player.y - 150);
-    
+    superidol.setVolume(slider.value());
   }
 }
 
@@ -51,12 +71,6 @@ function keyPressed() {
     setup();
     loop();
   }
-}
-
-function playSuperIdol() {
-  superidol.play();
-  superidol.loop();
-  userStartAudio();
 }
 
 class Player {
@@ -96,7 +110,12 @@ class Player {
         let maxX = platform.x + platform.width;
         if (this.x >= minX && this.x <= maxX) {
           this.jump();
-          boing.play();
+          if (!boing.isPlaying()){
+            boing.play();
+          } else {
+            boing.stop();
+            boing.play();
+          }
         }
       }
     }
