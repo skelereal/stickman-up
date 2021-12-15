@@ -1,3 +1,5 @@
+/// <reference path="../intellisense/p5.global-mode.d.ts" />
+
 var dissapointed;
 var bruh;
 var boing;
@@ -12,6 +14,7 @@ function preload() {
   shutdown = loadSound('../sound/shutdown.mp3');
   superidol = loadSound('../sound/super-idol.mp3');
   slider = createSlider(0, 1, 0.5, 0.01);
+  console.log("everything loaded..")
 }
 
 function setup() {
@@ -96,11 +99,11 @@ class Player {
   update() {
     this.y += this.velocity;
     this.velocity += this.gravity;
-    if (keyIsDown(37)) {
+    if (keyIsDown(37) || keyIsDown(65)) {
       player.x -= 2.5;
       this.goingLeft = true;
     }
-    if (keyIsDown(39)) {
+    if (keyIsDown(39) || keyIsDown(68)) {
       player.x += 2.5;
       this.goingLeft = false;
     }
@@ -177,6 +180,6 @@ function gameOver() {
   } else {
     dissapointed.play();
   }
-  //d
+  // Play shutdown
   shutdown.play();
 }

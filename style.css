@@ -26,7 +26,9 @@ h3 {
     font-family: Roboto, sans-serif;
 }
 
-p {
-    position: fixed;
+.copyright {
+    font-family: 'Ubuntu', sans-serif;
+    width: 100%;
+    position: absolute;
     bottom: 0;
 }
